@@ -35,8 +35,6 @@ export const uploadFileToStorage = async (uri, path) => {
 
     try {
         const snapshot = await uploadBytes(ref, blob);
-        console.log('Uploaded file');
-
         const url = await getDownloadURL(ref);
         return url;
     } catch (error) {
