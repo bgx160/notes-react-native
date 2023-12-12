@@ -61,6 +61,11 @@ const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPat
         }
     }
 
+    const handleCancelRecording = () => {
+        setRecorderVisible(false);
+        setRecordingUri('');
+    }
+
     const handleSaveRecording = async (recording) => {
         const audio = await uploadFileToStorage(recording, audioPath);
         const audioId = `audio-${new Date().getTime()}`;
@@ -88,7 +93,7 @@ const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPat
                             title={recording ? 'Stop recording' : 'Start recording'}
                             onPress={recording ? stopRecording : startRecording}
                         />
-                        <Button color='gray' title="Cancel" onPress={() => setRecorderVisible(false)} />
+                        <Button color='gray' title="Cancel" onPress={() => handleCancelRecording()} />
                     </View>
                     {
                         recordingUri &&
