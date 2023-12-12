@@ -1,13 +1,12 @@
 import { createRef, useRef, useState, useEffect } from "react";
-import { Button, SafeAreaView, ScrollView, KeyboardAvoidingView, View, Modal, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Image } from "react-native";
+import { SafeAreaView, ScrollView, KeyboardAvoidingView, View, Modal, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Image } from "react-native";
 import { Icon, IconButton, TextInput } from "react-native-paper";
 import { RichEditor, RichToolbar, actions } from "react-native-pell-rich-editor";
 import { Camera } from 'expo-camera';
-import { initializeApp, firebase } from 'firebase/app';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { getDatabase, ref as databaseRef, push, set } from 'firebase/database';
-import { AuthProvider, useAuth } from '../AuthContext';
-import { uploadImageToStorage, saveNoteToDatabase } from "../services/firebaseService.js";
+import { getStorage } from 'firebase/storage';
+import { getDatabase } from 'firebase/database';
+import { useAuth } from '../AuthContext';
+import { saveNoteToDatabase } from "../services/firebaseService.js";
 import { Audio } from "expo-av";
 import CameraComponent from "../components/CameraComponent.js";
 import uuid from 'react-native-uuid';

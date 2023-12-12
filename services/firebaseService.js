@@ -43,8 +43,3 @@ export const uploadFileToStorage = async (uri, path) => {
         console.error('Error uploading file:', error);
     }
 };
-
-export const requestCameraPermission = async () => {
-    const { status } = await Camera.requestCameraPermissionsAsync();
-    return status == 'granted';
-};

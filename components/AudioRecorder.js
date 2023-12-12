@@ -1,8 +1,7 @@
-import { View, Text, Modal, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { View, Modal, StyleSheet, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Audio } from 'expo-av'
 import { uploadFileToStorage } from '../services/firebaseService';
-import { IconButton } from 'react-native-paper';
 
 const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPath }) => {
     const [recording, setRecording] = useState();

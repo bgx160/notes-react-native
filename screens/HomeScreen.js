@@ -1,15 +1,14 @@
-import { StyleSheet, Text, TouchableOpacity, View, Alert, Button } from 'react-native'
+import { StyleSheet, TouchableOpacity, View, Alert } from 'react-native'
 import { Avatar, Card, IconButton, TextInput } from 'react-native-paper';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core'
-import { getDatabase, push, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue } from 'firebase/database';
 import { useAuth } from '../AuthContext.js';
+import { handleSignOut } from '../services/authService.js';
+import { deleteDirectoryFromStorage, deleteNote } from '../services/firebaseService.js';
 import ConfirmationModal from '../components/ConfirmationModal.js';
 import React from 'react';
-
 import app from "../firebase.js";
-import { handleSignOut } from '../services/authService.js';
-import { deleteDirectoryFromStorage, deleteImages, deleteNote } from '../services/firebaseService.js';
 
 const database = getDatabase(app);
 

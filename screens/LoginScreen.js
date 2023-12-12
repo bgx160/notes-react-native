@@ -1,10 +1,8 @@
-import { Alert, Keyboard, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Alert, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { app, auth } from '../firebase';
 import { useNavigation } from '@react-navigation/core'
 import { signUp, signIn } from '../services/authService';
+import React from 'react'
 
 
 const LoginScreen = () => {
@@ -118,6 +116,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         flexDirection: 'row'
-
     },
 })
