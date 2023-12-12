@@ -99,7 +99,6 @@ const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPat
                         recordingUri &&
                         <View style={styles.buttonContainer}>
                             <Button title="Save" color='green' onPress={() => handleSaveRecording(recordingUri)} />
-                            <Button title="Delete" color='red' onPress={() => setRecordingUri('')} />
                         </View>
                     }
                 </View>
