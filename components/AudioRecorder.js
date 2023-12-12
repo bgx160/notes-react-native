@@ -61,10 +61,6 @@ const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPat
         }
     }
 
-    const handleDeleteRecording = () => {
-        setRecordingUri('');
-    }
-
     const handleSaveRecording = async (recording) => {
         const audio = await uploadFileToStorage(recording, audioPath);
         const audioId = `audio-${new Date().getTime()}`;
