@@ -66,7 +66,7 @@ const HomeScreen = () => {
     setNoteToDelete({});
   };
 
-  handleLongPressNote = (id, path) => {
+  const handleLongPressNote = (id, path) => {
     setConfirmationVisible(true);
     setNoteToDelete({ id: id, path: path, uid: user.uid });
   }
