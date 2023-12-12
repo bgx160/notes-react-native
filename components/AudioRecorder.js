@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Audio } from 'expo-av'
 import { uploadFileToStorage } from '../services/firebaseService';
 
-const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPath }) => {
+const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, filePath }) => {
     const [recording, setRecording] = useState();
     const [recordingUri, setRecordingUri] = useState();
 
@@ -60,7 +60,7 @@ const AudioRecorder = ({ recorderVisible, setRecorderVisible, richText, audioPat
     }
 
     const handleSaveRecording = async (recording) => {
-        const audio = await uploadFileToStorage(recording, audioPath);
+        const audio = await uploadFileToStorage(recording, filePath);
         const audioId = `audio-${new Date().getTime()}`;
         richText.current.insertHTML(`
         <br>

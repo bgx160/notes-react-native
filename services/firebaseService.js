@@ -9,14 +9,14 @@ const database = getDatabase(app);
 
 export const saveNoteToDatabase = (user, content) => {
     if (content.id !== null && content.id !== '') {
-        set(databaseRef(database, `notes/${user.uid}/${content.id}`), content);
+        set(databaseRef(database, `${user.uid}/notes/${content.id}`), content);
     } else {
-        push(databaseRef(database, `notes/${user.uid}`), content);
+        push(databaseRef(database, `${user.uid}/notes`), content);
     }
 };
 
 export const deleteNote = (id, uid) => {
-    return remove(databaseRef(database, `notes/${uid}/${id}`));
+    return remove(databaseRef(database, `${uid}/notes/${id}`));
 }
 
 export const deleteDirectoryFromStorage = async (path) => {

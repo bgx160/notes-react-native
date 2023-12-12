@@ -22,7 +22,7 @@ const HomeScreen = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    const itemsRef = ref(database, `notes/${user.uid}`);
+    const itemsRef = ref(database, `${user.uid}/notes`);
     onValue(itemsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
@@ -48,18 +48,17 @@ const HomeScreen = () => {
     }
   }
 
-  const handleDeleteNote = async (id, imagePath, uid) => {
+  const handleDeleteNote = async (id, filePath, uid) => {
     try {
-      if (imagePath) {
-        await deleteDirectoryFromStorage(`${uid}/${imagePath}/recordings`);
-        await deleteDirectoryFromStorage(`${uid}/${imagePath}/images`);
+      if (filePath) {
+        await deleteDirectoryFromStorage(`${uid}/${filePath}/recordings`);
+        await deleteDirectoryFromStorage(`${uid}/${filePath}/images`);
       }
 
       await deleteNote(id, uid);
 
       Alert.alert("Note deleted successfully");
     } catch (error) {
-      console.error("Error deleting note:", error);
       Alert.alert("Failed to delete note. Please try again.");
     }
     setConfirmationVisible(false);
@@ -91,7 +90,7 @@ const HomeScreen = () => {
       <TextInput placeholder='Search' onChangeText={(text) => handleSearch(text)} />
       {notes.map((note, index) => {
         return (
-          <TouchableOpacity key={index} onLongPress={() => handleLongPressNote(note.id, note.imagePath)} onPress={() => navigate.navigate('Editor', { title: notes[index].title, content: notes[index].content, id: notes[index].id, imagePath: notes[index].imagePath })}>
+          <TouchableOpacity key={index} onLongPress={() => handleLongPressNote(note.id, note.filePath)} onPress={() => navigate.navigate('Editor', { title: notes[index].title, content: notes[index].content, id: notes[index].id, filePath: notes[index].filePath })}>
             <Card.Title key={index}
               title={note.title}
               subtitle={new Date(note.date).toDateString()}

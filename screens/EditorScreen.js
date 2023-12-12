@@ -28,7 +28,7 @@ const EditorScreen = ({ route, navigation }) => {
 
     const { user } = useAuth();
 
-    const [content, setContent] = useState({ id: null, title: '(no title)', content: '', date: Date.now(), imagePath: '' });
+    const [content, setContent] = useState({ id: null, title: '(no title)', content: '', date: Date.now(), filePath: '' });
     const [cameraPermission, setCameraPermission] = useState(null);
     const [cameraVisible, setCameraVisible] = useState(false);
     const [confirmationVisible, setConfirmationVisible] = useState(false);
@@ -42,14 +42,14 @@ const EditorScreen = ({ route, navigation }) => {
                 title: route.params.title,
                 content: route.params.content,
                 id: route.params.id,
-                imagePath: route.params.imagePath
+                filePath: route.params.filePath
             }));
         } else {
             setContent((prevContent) => ({
-                ...prevContent, imagePath: uuid.v4()
+                ...prevContent, filePath: uuid.v4()
             }))
         }
-        askCameraPermission(); // TODO: move this in openCamera
+        askCameraPermission();
         askAudioPermissions();
     }, []);
 
@@ -74,7 +74,8 @@ const EditorScreen = ({ route, navigation }) => {
 
     return (
         <View>
-            <CameraComponent cameraVisible={cameraVisible} setCameraVisible={setCameraVisible} richText={richText} imagePath={`${user.uid}/${content.imagePath}/images`} />
+            <CameraComponent cameraVisible={cameraVisible} setCameraVisible={setCameraVisible} richText={richText} filePath={`${user.uid}/${content.filePath}/images`} />
+            <AudioRecorder recorderVisible={recorderVisible} setRecorderVisible={setRecorderVisible} richText={richText} filePath={`${user.uid}/${content.filePath}/recordings`} />
 
 
             <SafeAreaView>
@@ -88,7 +89,6 @@ const EditorScreen = ({ route, navigation }) => {
                                 onCancel={() => navigation.goBack()}
                                 message="Do you want to save current changes?"
                             />
-                            <AudioRecorder recorderVisible={recorderVisible} setRecorderVisible={setRecorderVisible} richText={richText} audioPath={`${user.uid}/${content.imagePath}/recordings`} />
                             <IconButton icon="keyboard-backspace" size={40} color="#000" onPress={() => setConfirmationVisible(true)} />
                             <RichToolbar
                                 editor={richText}

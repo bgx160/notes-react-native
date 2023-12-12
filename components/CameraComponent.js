@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Modal, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
-import { uploadFileToStorage } from '../services/firebaseService'; // Import your image upload function
+import { uploadFileToStorage } from '../services/firebaseService';
 
-const CameraComponent = ({ cameraVisible, setCameraVisible, richText, imagePath }) => {
+const CameraComponent = ({ cameraVisible, setCameraVisible, richText, filePath }) => {
   const camera = useRef(null);
   const [picture, setPicture] = useState('');
   const [previewVisible, setPreviewVisible] = useState(false);
@@ -18,7 +18,7 @@ const CameraComponent = ({ cameraVisible, setCameraVisible, richText, imagePath 
   };
 
   const handleSavePicture = async (picture) => {
-    const image = await uploadFileToStorage(picture, imagePath);
+    const image = await uploadFileToStorage(picture, filePath);
     richText.current.insertImage(image, 'height: 320px; width: 240px;');
 
     setCameraVisible(false);
