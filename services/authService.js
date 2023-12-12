@@ -20,6 +20,6 @@ export const signIn = async (email, password) => {
     }
 };
 
-export const handleSignOut = () => {
+export const signOut = () => {
     auth.signOut()
 }

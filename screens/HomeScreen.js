@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/core'
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useAuth } from '../AuthContext.js';
-import { handleSignOut } from '../services/authService.js';
+import { signOut } from '../services/authService.js';
 import { deleteDirectoryFromStorage, deleteNote } from '../services/firebaseService.js';
 import ConfirmationModal from '../components/ConfirmationModal.js';
 import React from 'react';
@@ -78,7 +78,7 @@ const HomeScreen = () => {
       <View style={styles.topBar}>
         <IconButton icon="plus-circle-outline" iconColor='#000' onPress={() => navigate.navigate('Editor')} />
         <View style={styles.logOutButton}>
-          <IconButton icon="logout" onPress={() => handleSignOut()} />
+          <IconButton icon="logout" onPress={() => signOut()} />
         </View>
       </View>
       <ConfirmationModal
@@ -87,6 +87,7 @@ const HomeScreen = () => {
         onCancel={() => setConfirmationVisible(false)}
         message="Are you sure you want to delete this note?"
       />
+
       <TextInput placeholder='Search' onChangeText={(text) => handleSearch(text)} />
       {notes.map((note, index) => {
         return (
